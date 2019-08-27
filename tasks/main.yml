@@ -1,0 +1,15 @@
+---
+- name: Ensure that flavors exists
+  os_nova_flavor:
+    cloud: "{{ openstack_cloud | default(omit) }}"
+    auth: "{{ openstack_auth | default(omit) }}"
+    verify: "{{ openstack_ssl_verify | default(true) }}"
+    name: "{{ item.name }}"
+    ram: "{{ item.ram }}"
+    ephemeral: "{{ item.ephemeral | default(omit) }}"
+    disk: "{{ item.disk }}"
+    vcpus: "{{ item.vcpus }}"
+    extra_specs: "{{ item.extra_specs | default(omit) }}"
+    state: present
+  with_items:
+    - "{{ openstack_flavors }}"

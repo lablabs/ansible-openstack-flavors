@@ -1,0 +1,26 @@
+---
+openstack_flavors:
+  - name: lb.large
+    ram: 4096
+    vcpus: 4
+    disk: 40
+    extra_specs:
+      "aggregate_instance_extra_specs:pinned": "false"
+      "quota:disk_read_iops_sec": 8000
+      "quota:disk_write_iops_sec": 8000
+  - name: lb.medium
+    vcpus: 2
+    ram: 1024
+    disk: 20
+    extra_specs:
+      "aggregate_instance_extra_specs:pinned": "false"
+      "quota:disk_read_iops_sec": 5000
+      "quota:disk_write_iops_sec": 5000
+  - name: lb.small
+    ram: 512
+    vcpus: 1
+    disk: 10
+    extra_specs:
+      "aggregate_instance_extra_specs:pinned": "false"
+      "quota:disk_read_iops_sec": 3000
+      "quota:disk_write_iops_sec": 3000
