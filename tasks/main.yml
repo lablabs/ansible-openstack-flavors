@@ -10,6 +10,7 @@
     disk: "{{ item.disk }}"
     vcpus: "{{ item.vcpus }}"
     extra_specs: "{{ item.extra_specs | default(omit) }}"
+    is_public: "{{ item.is_public | default(omit) }}"
     state: present
   with_items:
     - "{{ openstack_flavors }}"
