@@ -12,5 +12,12 @@
     extra_specs: "{{ item.extra_specs | default(omit) }}"
     is_public: "{{ item.is_public | default(omit) }}"
     state: present
-  with_items:
-    - "{{ openstack_flavors }}"
+  loop: "{{ openstack_flavors }}"
+
+- name: Enable access to the given flavor to project
+  os_project_access:
+    target_project_id: "{{ item.project_id }}"
+    resource_name: "{{ item.name }}"
+    resource_type: nova_flavor
+  when: item.project_id is defined and item.project_id
+  loop: "{{ openstack_flavors }}"
